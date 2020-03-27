@@ -79,7 +79,7 @@ public class HomeActivity extends BaseActivity implements HomePresenter {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.layout.activity_login:
+            case android.R.id.home:
                 this.finish();
                 return true;
         }
