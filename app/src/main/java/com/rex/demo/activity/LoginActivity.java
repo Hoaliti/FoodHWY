@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.rex.demo.adapter.HomeAdapter;
 import com.rex.demo.presenter.Login;
 import com.rex.demo.view.LoginView;
 import com.rex.demo.R;
@@ -48,7 +47,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     public void onLoginSuccess() {
         Log.d("Login","Success!");
         toast(getString(R.string.login_success));
-        startActivity(HomeActivity.class,true);
+        switchToHome();
     }
 
     @Override

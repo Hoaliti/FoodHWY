@@ -3,20 +3,13 @@ package com.rex.demo.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.rex.demo.R;
-
 public abstract class BaseActivity extends AppCompatActivity {
-    public static final String TAG = "BaseActivity";
-
-    private Handler mHandler = new Handler();
 
     private InputMethodManager mInputMethodManager;
 
@@ -27,26 +20,22 @@ public abstract class BaseActivity extends AppCompatActivity {
         init();
     }
 
-
     protected void init() {}
-
     public abstract int getLayoutRes();
 
-    protected void startActivity(Class activity) {
-        startActivity(activity, true);
-    }
 
-    protected void startActivity(Class activity, boolean finish) {
-        Intent intent = new Intent(this, activity);
+    protected void switchToHome() {
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
-        if (finish) {
-            finish();
-        }
+
     }
 
-    protected void toast(String msg) {
-        mHandler.getLooper().prepare();
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    protected void toast(final String msg) {
+        this.runOnUiThread(new Runnable() {
+            public void run() {
+                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     protected void hideKeyBoard() {
