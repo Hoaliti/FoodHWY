@@ -2,6 +2,9 @@ package com.rex.demo.presenter;
 
 
 
+import android.content.Context;
+import android.widget.EditText;
+
 import com.rex.demo.view.LoginView;
 import org.json.JSONObject;
 import java.io.IOException;
@@ -15,23 +18,22 @@ import okhttp3.Response;
 public class Login implements LoginPresenter {
     private LoginView mLoginView;
 
-
     public Login(LoginView loginView){
         mLoginView = loginView;
     }
 
     @Override
-    public void login() {
+    public void login(final String userName,final String password) {
         Thread loginThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 String url = "http://php7.foodhwy.net/api/login";
-                String userName = "6479891678";
-                String pwd = "cfb326cd57";
+              /*  String userName = "6479891678";
+                String pwd = "cfb326cd57";*/
                 OkHttpClient client = new OkHttpClient();
                 RequestBody body = new FormBody.Builder()
                         .add("username",userName)
-                        .add("password",pwd)
+                        .add("password",password)
                         .build();
                 Request request = new Request.Builder()
                         .url(url)

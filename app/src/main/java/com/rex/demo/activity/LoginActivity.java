@@ -40,7 +40,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void onStartLogin() {
-        login.login();
+        login.login(mUserName.getText().toString(),mPassword.getText().toString());
     }
 
     @Override
